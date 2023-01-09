@@ -23,9 +23,6 @@ const TopSellingPdts = () => {
         }}
       >
         <ProductThumbnail />
-        <ProductThumbnail />
-        <ProductThumbnail />
-        <ProductThumbnail />
       </View>
     </View>
   );

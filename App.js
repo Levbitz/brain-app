@@ -1,21 +1,25 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, ScrollView, View } from "react-native";
 import HomeScreen from "./src/Screens/HomeScreen/HomeScreen";
+import { NavigationContainer } from "@react-navigation/native";
+
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import DetailScreen from "./src/Screens/DetailsScreen/DetailScreen";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <ScrollView style={{ paddingTop: 35 }}>
-      <View
-        style={{
-          backgroundColor: "#e0e0e0",
-          flex: 1,
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
         }}
       >
-        <StatusBar style="dark" />
-
-        <HomeScreen />
-      </View>
-    </ScrollView>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Details" component={DetailScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
