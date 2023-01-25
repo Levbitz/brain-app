@@ -12,7 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
 
-const ProductThumbnail = () => {
+const ProductThumbnail = ({ title, uri, price }) => {
   const navigation = useNavigation();
   return (
     <Pressable
@@ -35,7 +35,7 @@ const ProductThumbnail = () => {
       >
         <Image
           source={{
-            uri: "https://ug.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/02/223242/1.jpg?1461",
+            uri: uri,
           }}
           style={{
             width: width / 2.5,
@@ -51,8 +51,7 @@ const ProductThumbnail = () => {
             paddingHorizontal: 10,
           }}
         >
-          {" "}
-          woman formal dresss
+          {title}...
         </Text>
         <Text
           style={{
@@ -62,7 +61,7 @@ const ProductThumbnail = () => {
             paddingHorizontal: 10,
           }}
         >
-          ugx: 30,000
+          {price}
         </Text>
       </View>
     </Pressable>

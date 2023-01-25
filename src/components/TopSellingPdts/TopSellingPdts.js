@@ -1,9 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import ProductThumbnail from "../ProductThumbmail/ProductThumbnail";
 
+import { DataContext } from "../../context/ProductContext/productContext";
+
 const TopSellingPdts = () => {
-  return (
+  const { products } = useContext(DataContext);
+  return products ? (
     <View>
       <Text
         style={{
@@ -12,9 +15,7 @@ const TopSellingPdts = () => {
           marginBottom: 20,
           color: "gray",
         }}
-      >
-        Top Selling
-      </Text>
+      ></Text>
       <View
         style={{
           flexDirection: "row",
@@ -22,9 +23,22 @@ const TopSellingPdts = () => {
           flexWrap: "wrap",
         }}
       >
-        <ProductThumbnail />
+        {products.slice(0, 8).map((product, index) => {
+          //console.log(product);
+          const { title, sliders, price } = product;
+          return (
+            <ProductThumbnail
+              title={title ? title.slice(0, 15) : "loading"}
+              uri={sliders && sliders.length > 0 ? sliders[0] : null}
+              price={price}
+              key={index}
+            />
+          );
+        })}
       </View>
     </View>
+  ) : (
+    <Text>Loading</Text>
   );
 };
 
